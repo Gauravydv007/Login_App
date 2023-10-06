@@ -26,7 +26,7 @@ class _LoginState extends State<Login> {
       constraints: const BoxConstraints.expand(),
       decoration: const BoxDecoration(
       image: DecorationImage(
-          image: AssetImage("assets/images/computer.jpg"), 
+          image: AssetImage("assets/images/5172658.jpg"), 
           fit: BoxFit.cover),
       ),
 
@@ -43,19 +43,17 @@ class _LoginState extends State<Login> {
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             children: <Widget>[
-                              TextFormField(
-                                decoration: const InputDecoration( hintText: "Name" , labelText: "Name" ),
-                              ),
+                              
                               const SizedBox( height: 20,),
                               TextFormField(
-                                obscureText: true,
+                                
                                 decoration: const InputDecoration( hintText: "Username" , labelText: "Username" ),
                               ),
                               const SizedBox( height: 20,),
                              
                               TextFormField(
                                 obscureText: true,
-                                decoration: const InputDecoration( hintText: "enter Password" , labelText: " Re-enter Password" ),
+                                decoration: const InputDecoration( hintText: "Enter Password" , labelText: " Enter Password" ),
                               ),
                              const SizedBox( height: 20,
                              ),
