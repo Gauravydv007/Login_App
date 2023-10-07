@@ -3,8 +3,7 @@ import 'package:my_app2/Loginpage.dart';
 import 'package:my_app2/SignUp.dart';
 
 class Firstpage extends StatefulWidget {
-  const Firstpage( {super.key});
-  
+  const Firstpage({super.key});
 
   @override
   State<Firstpage> createState() => _FirstpageState();

@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDK1XnxFcoYmD3IRt6aFBXYPm4b01mgkMQ',
-    appId: '1:1048953934757:web:8f461235fcfe8224b84e4c',
-    messagingSenderId: '1048953934757',
-    projectId: 'fir-253c6',
-    authDomain: 'fir-253c6.firebaseapp.com',
-    storageBucket: 'fir-253c6.appspot.com',
-    measurementId: 'G-JVGEFDXNN1',
+    apiKey: 'AIzaSyBqlNjKxY_8zTRt_Qg-iMbnylF2ssDhNuQ',
+    appId: '1:751666032118:web:c2c41bf0b686f9f8856bd7',
+    messagingSenderId: '751666032118',
+    projectId: 'fir-beb70',
+    authDomain: 'fir-beb70.firebaseapp.com',
+    storageBucket: 'fir-beb70.appspot.com',
+    measurementId: 'G-H3L2RP5MBF',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyASHAKyvcvEahsyCQt-3jYSsiPA27npVds',
-    appId: '1:1048953934757:android:0157bf3a4a54a2f6b84e4c',
-    messagingSenderId: '1048953934757',
-    projectId: 'fir-253c6',
-    storageBucket: 'fir-253c6.appspot.com',
+    apiKey: 'AIzaSyDQJljwtzy9IzKvrwjq6RCof0YlTMdcbMA',
+    appId: '1:751666032118:android:143ac65a3b5ff3cb856bd7',
+    messagingSenderId: '751666032118',
+    projectId: 'fir-beb70',
+    storageBucket: 'fir-beb70.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA8hRlHBFTrS2AHElfYyowzWTG5P5T40jI',
-    appId: '1:1048953934757:ios:8b39d04d5d26d922b84e4c',
-    messagingSenderId: '1048953934757',
-    projectId: 'fir-253c6',
-    storageBucket: 'fir-253c6.appspot.com',
+    apiKey: 'AIzaSyDOYydXW9op3syo2w7RX1chugbSgycS8Z4',
+    appId: '1:751666032118:ios:11230a5308045604856bd7',
+    messagingSenderId: '751666032118',
+    projectId: 'fir-beb70',
+    storageBucket: 'fir-beb70.appspot.com',
     iosBundleId: 'com.example.myApp2',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyA8hRlHBFTrS2AHElfYyowzWTG5P5T40jI',
-    appId: '1:1048953934757:ios:8d5f76c4043974ebb84e4c',
-    messagingSenderId: '1048953934757',
-    projectId: 'fir-253c6',
-    storageBucket: 'fir-253c6.appspot.com',
+    apiKey: 'AIzaSyDOYydXW9op3syo2w7RX1chugbSgycS8Z4',
+    appId: '1:751666032118:ios:90ba4e5a2c1629b0856bd7',
+    messagingSenderId: '751666032118',
+    projectId: 'fir-beb70',
+    storageBucket: 'fir-beb70.appspot.com',
     iosBundleId: 'com.example.myApp2.RunnerTests',
   );
 }
