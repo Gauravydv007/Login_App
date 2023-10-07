@@ -14,7 +14,7 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
 final userNameContoller = TextEditingController();
 final passwordContoller = TextEditingController();
-
+final key = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -43,6 +43,7 @@ final passwordContoller = TextEditingController();
                   child: Column(
                     children: <Widget>[
                        Form(
+                        key: key,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
@@ -66,21 +67,23 @@ final passwordContoller = TextEditingController();
                              ElevatedButton.icon( 
                               
                               onPressed:(){
-      
+                              
                               Navigator.push(context, MaterialPageRoute(builder: (context) => Homepage(),
                               ),
                               );
-      
+                              
                              }, icon: const Icon(Icons.arrow_circle_right), 
                              label: Text("sign Up"),
-      
+                              
                              
                              )
                              
                             ],
                           ),
+
                         )
                         ),
+                        ElevatedButton(onPressed: (){}, child:Icon(Icons.nat),)
                         
           
                     ],
