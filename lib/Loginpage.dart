@@ -4,6 +4,7 @@ import 'package:my_app2/services/auth_service.dart';
 import 'package:my_app2/verification.dart';
 import 'package:my_app2/home.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:my_app2/forgot_password.dart';
 
 class Login extends StatefulWidget {
   Login({Key? key}) : super(key: key);
@@ -78,7 +79,7 @@ class _LoginState extends State<Login> {
                           TextFormField(
                             controller: emailController,
                             decoration: const InputDecoration(
-                                hintText: "Username", labelText: "Username"),
+                                hintText: "Email", labelText: "Email"),
                           ),
                           const SizedBox(
                             height: 20,
@@ -104,14 +105,22 @@ class _LoginState extends State<Login> {
                         ],
                       ),
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(29),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text(
-                            "Forgot Password?",
-                            style: TextStyle(color: Colors.blueGrey),
+                          GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context){
+                                return ForgotPasswordPage();
+                              },),);
+                            },
+                            
+                            child: Text(
+                              "Forgot Password?",
+                              style: TextStyle(color: Colors.blueGrey , fontWeight: FontWeight.bold),
+                            ),
                           )
                         ],
                       ),
@@ -146,8 +155,8 @@ class _LoginState extends State<Login> {
                               MaterialPageRoute(
                                   builder: (context) => Homepage()));
                         } else {
-                          // Handle the case when Google Sign-In fails
-                          // You can show an error message or take appropriate action here
+                          // if sign in fail 
+                          print("Error");
                         }
                       },
                       child: Container(
