@@ -52,7 +52,7 @@ class _SignupState extends State<Signup> {
               title: Center(
             child: Text(
               message,
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.black),
             ),
           ));
         });

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:my_app2/services/auth_service.dart';
 import 'package:my_app2/verification.dart';
 import 'package:my_app2/home.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class Login extends StatefulWidget {
   Login({Key? key}) : super(key: key);
@@ -137,7 +138,18 @@ class _LoginState extends State<Login> {
                           )),
                         ])),
                     InkWell(
-                      onTap: () => AuthService().signInWithGoogle(),
+                      onTap: () async {
+                        final user = await AuthService().signInWithGoogle();
+                        if (user != null) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Homepage()));
+                        } else {
+                          // Handle the case when Google Sign-In fails
+                          // You can show an error message or take appropriate action here
+                        }
+                      },
                       child: Container(
                         padding: EdgeInsetsDirectional.all(7),
                         decoration: BoxDecoration(
