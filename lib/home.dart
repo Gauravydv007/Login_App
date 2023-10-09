@@ -1,20 +1,51 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'Loginpage.dart';
+import 'package:my_app2/Loginpage.dart';
+import 'package:my_app2/verification.dart';
 
 class Homepage extends StatelessWidget {
    Homepage({super.key});
 
-  final user = FirebaseAuth.instance.currentUser;
+   final user = FirebaseAuth.instance.currentUser!;
+
+   void signUserOut(){
+    FirebaseAuth.instance.signOut();
+    
+   }
+
+  
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          appBar: AppBar(
-            title: const Text("Home"),
-            centerTitle: true,
-          ),
+    return  Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: (){
+              signUserOut();
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()));
+              }, 
+            icon: Icon(Icons.logout),
+            )
+        ],
+      ),
+
+      // body:Center(child: Text("Logged in" + user.email!,
+      // style: TextStyle(fontSize: 25),
+      // )
+      
+      // ),
+
+             
+          
+        
+      
+      
+      
+        
+          
+          
           drawer: Drawer(
             child: ListView(
               padding: EdgeInsets.zero,
@@ -49,7 +80,7 @@ class Homepage extends StatelessWidget {
               ],
             ),
           ),
-          body: Container(
+               body:Container(
             constraints: const BoxConstraints.expand(),
             decoration: const BoxDecoration(
               image: DecorationImage(
@@ -88,7 +119,9 @@ class Homepage extends StatelessWidget {
 
           // drawer: Drawer();
 
-          ),
-    );
+          );
+    
   }
 }
+
+

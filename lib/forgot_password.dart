@@ -31,7 +31,7 @@ try {
      context: context,
      builder: (context){
       return const AlertDialog(
-        content: Text( 'Password reset linl sent! check email')
+        content: Text( 'Password reset link sent! check email')
         
       );
 }
@@ -94,6 +94,7 @@ on FirebaseAuthException catch(e) {
               ),
               SizedBox(height: 10,),
               MaterialButton(onPressed: (){
+                 passwordReset(); 
 
               },
               child: Text('Reset Password'),

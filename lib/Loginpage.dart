@@ -13,7 +13,7 @@ class Login extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginState extends State<Login> { 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -25,6 +25,17 @@ class _LoginState extends State<Login> {
         email: emailController.text,
         password: passwordController.text,
       );
+         
+           // Check if the user's email is verified
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null && !user.emailVerified) {
+      await user.sendEmailVerification();
+      // Show a message to the user to check their email for verification
+    // _showInfoMessage(context, "A verification email has been sent. Please check your email.");
+
+    }
+
+
       print("return............");
       // ignore: use_build_context_synchronously
       Navigator.push(
@@ -37,6 +48,23 @@ class _LoginState extends State<Login> {
       showErrorMessage(e.code);
     }
   }
+
+//    void  _showInfoMessage = (BuildContext context, String message) {
+//   showDialog(
+//     context: context,
+//     builder: (context) {
+//       return AlertDialog(
+//         title: Center(
+//           child: Text(
+//             message,
+//             style: const TextStyle(color: Colors.black),
+//           ),
+//         ),
+//       );
+//     },
+//   );
+// };
+
 
   void showErrorMessage(String message) {
     showDialog(

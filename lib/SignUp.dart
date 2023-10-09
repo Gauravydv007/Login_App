@@ -61,6 +61,7 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
           appBar: AppBar(
             title: const Text("Signup Page"),
