@@ -106,3 +106,4 @@ on FirebaseAuthException catch(e) {
     );
   }
 }
+

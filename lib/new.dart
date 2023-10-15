@@ -39,7 +39,7 @@ class _FirstpageState extends State<Firstpage> {
                 children: [
                   ElevatedButton.icon(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => Signup(),
@@ -68,3 +68,5 @@ class _FirstpageState extends State<Firstpage> {
     ));
   }
 }
+
+
