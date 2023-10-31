@@ -44,9 +44,8 @@ class _SignupState extends State<Signup> {
   // }
 
   bool _obscureText = true;
-  bool _obs=true;
+  bool _obs = true;
   // ignore: unused_field
-  String _password='';
 
   // Toggles the password show status
   void _toggle() {
@@ -54,8 +53,6 @@ class _SignupState extends State<Signup> {
       _obscureText = !_obscureText;
     });
   }
-
-
 
   void _submitForm() {
     if (_formkey.currentState!.validate()) {
@@ -113,14 +110,18 @@ class _SignupState extends State<Signup> {
     return null;
   }
 
-
-
-  bool isValidPassword(String password) {
-    final RegExp passwordPattern = RegExp(
-      r'^(?=.*?[A-Z])(?=.*?[!@#\$&*~]).{8,}$',
-    );
-
-    return passwordPattern.hasMatch(password);
+  String? validatePassword(value) {
+    RegExp regex =
+        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+    if (value.isEmpty) {
+      return 'Please enter password';
+    } else {
+      if (!regex.hasMatch(value)) {
+        return 'Enter valid password';
+      } else {
+        return null;
+      }
+    }
   }
 
   void signUserUp() async {
@@ -221,51 +222,53 @@ class _SignupState extends State<Signup> {
                                   ),
                                   TextFormField(
                                     // validator: (value) {
-                                    //   if (value.isEmpty || value == null) {
-                                    //     return "Enter Password";
-                                    //   } else if ( !_passwordRegex.hasMatch(value)) {
-                                    //     return "Password length should be more than 8 Letters";
+                                    //   if (value!.isEmpty) {
+                                    //     return 'Please enter your password';
+                                    //   } else if (value.length < 6) {
+                                    //     return 'Password must be at least 6 characters!';
                                     //   }
+                                    //   return null;
                                     // },
 
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return 'Please enter your password';
-                                      } else if (value.length < 6) {
-                                        return 'Password must be at least 6 characters!';
-                                      }
-                                      return null;
-                                    },
+                                    validator: validatePassword,
                                     autovalidateMode:
                                         AutovalidateMode.onUserInteraction,
                                     controller: passwordContoller,
-                                    
-                                    obscureText: _obscureText,
-                                    
-                                    decoration: InputDecoration(
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.deepPurpleAccent),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.deepPurpleAccent),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      hintText: 'Password',
-                                      labelText: "Password",
-                                      labelStyle: TextStyle(
-                                        color: Colors.black54,
-                                      ),
-                                      fillColor: Colors.grey[200],
-                                      filled: true,
-                                      suffixIconConstraints: BoxConstraints(
-                                        minHeight: 10,
 
-                                      ),
-                                      suffixIcon: IconButton(onPressed: _toggle, icon: _obscureText ? Icon(Icons.remove_red_eye_rounded, ): Icon(Icons.remove_red_eye_outlined))
-                                    ),
+                                    obscureText: _obscureText,
+
+                                    decoration: InputDecoration(
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.deepPurpleAccent),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.deepPurpleAccent),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        hintText: 'Password',
+                                        labelText: "Password",
+                                        labelStyle: TextStyle(
+                                          color: Colors.black54,
+                                        ),
+                                        fillColor: Colors.grey[200],
+                                        filled: true,
+                                        suffixIconConstraints: BoxConstraints(
+                                          minHeight: 10,
+                                        ),
+                                        suffixIcon: IconButton(
+                                            onPressed: _toggle,
+                                            icon: _obscureText
+                                                ? Icon(
+                                                    Icons
+                                                        .remove_red_eye_rounded,
+                                                  )
+                                                : Icon(Icons
+                                                    .remove_red_eye_outlined))),
                                   ),
                                   const SizedBox(
                                     height: 20,
@@ -280,38 +283,46 @@ class _SignupState extends State<Signup> {
                                     //   }
                                     // },
 
-                                     validator: _validatePassword,
-                                
+                                    validator: _validatePassword,
+
                                     controller: confirmPasswordController,
                                     obscureText: _obs,
                                     decoration: InputDecoration(
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.deepPurpleAccent),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.deepPurpleAccent),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      hintText: ' Password',
-                                      labelText: " Re-enter Password",
-                                      labelStyle: TextStyle(
-                                        color: Colors.black54,
-                                      ),
-                                      fillColor: Colors.grey[200],
-                                      filled: true,
-                                      suffixIconConstraints: BoxConstraints(
-                                        minHeight: 10,
-                                        
-                                      ),
-                                      suffixIcon: IconButton(onPressed: (){
-                                        setState(() {
-                                          _obs =!_obs ;
-                                        });
-                                      }, icon: _obs ? Icon(Icons.remove_red_eye_rounded, ): Icon(Icons.remove_red_eye_outlined))
-                                    ),
+                                        enabledBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.deepPurpleAccent),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.deepPurpleAccent),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        hintText: ' Password',
+                                        labelText: " Re-enter Password",
+                                        labelStyle: TextStyle(
+                                          color: Colors.black54,
+                                        ),
+                                        fillColor: Colors.grey[200],
+                                        filled: true,
+                                        suffixIconConstraints: BoxConstraints(
+                                          minHeight: 10,
+                                        ),
+                                        suffixIcon: IconButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                _obs = !_obs;
+                                              });
+                                            },
+                                            icon: _obs
+                                                ? Icon(
+                                                    Icons
+                                                        .remove_red_eye_rounded,
+                                                  )
+                                                : Icon(Icons
+                                                    .remove_red_eye_outlined))),
                                   ),
                                   const SizedBox(
                                     height: 20,
@@ -322,12 +333,6 @@ class _SignupState extends State<Signup> {
                         ElevatedButton.icon(
                           onPressed: () {
                             _submitForm();
-                            
-                          
-                                
-                                
-                            
-                                
                           },
                           icon: Icon(Icons.keyboard_arrow_right_sharp),
                           label: Text("Signup"),

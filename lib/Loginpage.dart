@@ -23,9 +23,9 @@ class _LoginState extends State<Login> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   bool _obscureText1 = true;
-  
+
   // ignore: unused_field
-  String _password='';
+  String _password = '';
 
   // Toggles the password show status
   void _toggle() {
@@ -85,17 +85,28 @@ class _LoginState extends State<Login> {
       // );
 
       Navigator.pushAndRemoveUntil(
-  context,
-  MaterialPageRoute(
-    builder: (context) => Homepage(),
-  ),
-  (route) => false, // This will remove all existing routes from the stack
-);
-
-
-
+        context,
+        MaterialPageRoute(
+          builder: (context) => Homepage(),
+        ),
+        (route) => false, // This will remove all existing routes from the stack
+      );
     } on FirebaseAuthException catch (e) {
       showErrorMessage(e.code);
+    }
+  }
+
+  String? validatePassword(value) {
+    RegExp regex =
+        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+    if (value.isEmpty) {
+      return 'Please enter password';
+    } else {
+      if (!regex.hasMatch(value)) {
+        return 'Enter valid password';
+      } else {
+        return null;
+      }
     }
   }
 
@@ -143,7 +154,6 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -167,77 +177,65 @@ class _LoginState extends State<Login> {
                             height: 20,
                           ),
                           TextFormField(
-
-                             validator: _validateEmail,
-                                    autovalidateMode:
-                                        AutovalidateMode.onUserInteraction,
+                            validator: _validateEmail,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             controller: emailController,
-
-            
-            
                             decoration: InputDecoration(
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.deepPurpleAccent),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.deepPurpleAccent),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      hintText: 'Email',
-                                      labelText: " Email",
-                                      labelStyle: TextStyle(
-                                        color:Colors.black54, 
-                                      ),
-                                      fillColor: Colors.grey[200],
-                                      filled: true,
-                                    ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.deepPurpleAccent),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.deepPurpleAccent),
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                              hintText: 'Email',
+                              labelText: " Email",
+                              labelStyle: TextStyle(
+                                color: Colors.black54,
+                              ),
+                              fillColor: Colors.grey[200],
+                              filled: true,
+                            ),
                           ),
                           const SizedBox(
                             height: 30,
                           ),
                           TextFormField(
-
-
-                            validator: (value){
-                                      if(value!.isEmpty){
-                                        return "Enter Password";
-                                      }
-                                      else if(passwordController.text.length <6){
-                                        return "Password length should be more than 6 Letters";
-                                      }
-                                      return null;
-                                    },
+                            validator: validatePassword,
                             controller: passwordController,
                             obscureText: _obscureText1,
-
-            
                             decoration: InputDecoration(
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.deepPurpleAccent),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.deepPurpleAccent),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      hintText: 'Enter Password',
-                                      labelText: " Enter Password",
-                                      labelStyle: TextStyle(
-                                        color:Colors.black54, 
-                                      ),
-                                      fillColor: Colors.grey[200],
-                                      filled: true,
-                                      suffixIconConstraints: BoxConstraints(
-                                        minHeight: 10,
-
-                                      ),
-                                      suffixIcon: IconButton(onPressed: _toggle, icon: _obscureText1 ? Icon(Icons.remove_red_eye_rounded, ): Icon(Icons.remove_red_eye_outlined))
-                                    ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.deepPurpleAccent),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.deepPurpleAccent),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                hintText: 'Enter Password',
+                                labelText: " Enter Password",
+                                labelStyle: TextStyle(
+                                  color: Colors.black54,
+                                ),
+                                fillColor: Colors.grey[200],
+                                filled: true,
+                                suffixIconConstraints: BoxConstraints(
+                                  minHeight: 10,
+                                ),
+                                suffixIcon: IconButton(
+                                    onPressed: _toggle,
+                                    icon: _obscureText1
+                                        ? Icon(
+                                            Icons.remove_red_eye_rounded,
+                                          )
+                                        : Icon(Icons.remove_red_eye_outlined))),
                           ),
                           const SizedBox(
                             height: 10,
@@ -258,22 +256,19 @@ class _LoginState extends State<Login> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-
-
                           ElevatedButton.icon(
-                          
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Signup(),
-                          ));
-                    },
-                    label: Text("Signup"),
-                    icon: const Icon(
-                      Icons.arrow_back_sharp,
-                    ),
-                  ),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Signup(),
+                                  ));
+                            },
+                            label: Text("Signup"),
+                            icon: const Icon(
+                              Icons.arrow_back_sharp,
+                            ),
+                          ),
                           GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -318,19 +313,15 @@ class _LoginState extends State<Login> {
                         ])),
                     InkWell(
                       onTap: () async {
-            
-            
                         showDialog(
-                              context: context,
-                              builder: (context) {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              });
+                            context: context,
+                            builder: (context) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            });
                         final user = await AuthService().signInWithGoogle();
                         if (user != null) {
-                          
-
                           // ignore: use_build_context_synchronously
                           Navigator.pushAndRemoveUntil(
                             context,

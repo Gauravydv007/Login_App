@@ -14,7 +14,7 @@ class EmailVerificationScreen extends StatefulWidget {
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
-  bool isEmailVerified = false;
+  bool isEmailVerified = false;  //use store and track whether email verifyb hua ki nhi
   Timer? timer;
   
   @override
@@ -41,7 +41,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 // ignore: use_build_context_synchronously
 Navigator.pushAndRemoveUntil(
   context,
-  MaterialPageRoute(builder: (context) => Login()),
+  MaterialPageRoute(builder: (context) => Login()),  //context=It's used to determine where to perform the navigation operation.
   (Route<dynamic> route) => false, // This predicate keeps no routes in the stack
 );
 
